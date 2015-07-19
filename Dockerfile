@@ -18,3 +18,4 @@ RUN echo "dummy ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/dummy
 RUN chmod 0440 /etc/sudoers.d/dummy
 
 USER dummy
+WORKDIR /home/dummy
