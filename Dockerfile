@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM ubuntu:trusty
 
 # Localization
 RUN echo "Europe/Moscow" | tee /etc/timezone && \
