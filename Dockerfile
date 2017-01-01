@@ -1,4 +1,4 @@
-FROM ubuntu:trusty
+FROM ubuntu:xenial
 
 # Localization
 RUN echo "Europe/Moscow" | tee /etc/timezone && \
@@ -12,6 +12,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -y \
     netcat \
     python-software-properties \
     software-properties-common \
+    sudo \
     vim
 
 # Cleanup
@@ -19,8 +20,8 @@ RUN apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # User management
-RUN useradd -m -u 1000 dummy
-RUN echo "dummy ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/dummy
-RUN chmod 0440 /etc/sudoers.d/dummy
+RUN useradd -m -u 1000 dummy \
+    && echo "dummy ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/dummy \
+    && chmod 0440 /etc/sudoers.d/dummy
 USER dummy
 WORKDIR /home/dummy
